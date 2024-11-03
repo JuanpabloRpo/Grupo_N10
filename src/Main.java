@@ -8,6 +8,7 @@ public class Main {
 
         // Variables para almacenar el inventario de disponible y para almacenar los vehiculos
         String[][] Inventario= new String[10][7];
+
         String[] CodigosIdentificacion = new String[10];
         String[] modelos = new String[10];
         int[] years = new int[10];
@@ -174,19 +175,29 @@ public class Main {
         Metodos metodos = new Metodos();
         String lineas="---------------------------------------------------------------";
         String mensaje = "Los vehiculos disponibles para el dia "+metodos.combertirNumberToDia(dia)+ " son: \n";
+        boolean doble=true;
+        //10
+        // 5 5
         for (int i = 0; i < indices.length; i++) {
             //
             if (indices[i]==0 && i>0 || indices[i]<0){
                 break;
             }
-
+            if (i>4 && doble){
+                mensaje += "\n(1/2)\n";
+                JOptionPane.showMessageDialog(null,mensaje);
+                mensaje = "Los vehiculos disponibles para el dia "+metodos.combertirNumberToDia(dia)+ " son: \n";
+                doble=false;
+            }
                 mensaje+=lineas+"\n";
                 mensaje+="Vehiculo modelo: "+modelos[indices[i]]+"\n";
                 mensaje+="Con codigo de identificación: "+ codigos[indices[i]] +"\n";
                 mensaje+="Fabricado en el año: "+year[indices[i]]+"\n";
                 mensaje+="con un precio de: "+precios[indices[i]]+"\n";
         }
-
+        if(doble==false){
+            mensaje += "\n(2/2)\n";
+        }
         JOptionPane.showMessageDialog(null,mensaje);
     }
 
@@ -194,10 +205,21 @@ public class Main {
         Metodos metodos = new Metodos();
         String lineas="---------------------------------------------------------------";
         String mensaje = "Los vehiculos NO disponibles para el dia "+metodos.combertirNumberToDia(dia)+ " son: \n";
+
+        boolean doble=true;
+
         for (int i = 0; i < indices.length; i++) {
             if (indices[i]==0 && i>0 || indices[i]<0){
                 break;
             }
+
+            if (i>4 && doble){
+                mensaje += "\n(1/2)\n";
+                JOptionPane.showMessageDialog(null,mensaje);
+                mensaje = "Los vehiculos disponibles para el dia "+metodos.combertirNumberToDia(dia)+ " son: \n";
+                doble=false;
+            }
+
             mensaje+=lineas+"\n";
             mensaje+="Vehiculo modelo: "+modelos[indices[i]]+"\n";
             mensaje+="Con codigo de identificación: "+ codigos[indices[i]] +"\n";
@@ -205,6 +227,9 @@ public class Main {
             mensaje+="con un precio de: "+precios[indices[i]]+"\n";
         }
 
+        if(doble==false){
+            mensaje += "\n(2/2)\n";
+        }
         JOptionPane.showMessageDialog(null,mensaje);
     }
 
