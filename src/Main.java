@@ -176,11 +176,12 @@ public class Main {
         String lineas="---------------------------------------------------------------";
         String mensaje = "Los vehiculos disponibles para el dia "+metodos.combertirNumberToDia(dia)+ " son: \n";
         boolean doble=true;
-        //10
-        // 5 5
+        int carros = 0;
+
         for (int i = 0; i < indices.length; i++) {
             //
             if (indices[i]==0 && i>0 || indices[i]<0){
+
                 break;
             }
             if (i>4 && doble){
@@ -194,17 +195,22 @@ public class Main {
                 mensaje+="Con codigo de identificación: "+ codigos[indices[i]] +"\n";
                 mensaje+="Fabricado en el año: "+year[indices[i]]+"\n";
                 mensaje+="con un precio de: "+precios[indices[i]]+"\n";
+                carros++;
         }
-        if(doble==false){
+        if(!doble){
             mensaje += "\n(2/2)\n";
         }
-        JOptionPane.showMessageDialog(null,mensaje);
+        if (carros!=0){
+            JOptionPane.showMessageDialog(null,mensaje);
+        }
+
     }
 
     public static void mostrarVehiculosNoDisponibles(int[] indices, String[] codigos, String[] modelos, int[] year, int[] precios,int dia){
         Metodos metodos = new Metodos();
         String lineas="---------------------------------------------------------------";
         String mensaje = "Los vehiculos NO disponibles para el dia "+metodos.combertirNumberToDia(dia)+ " son: \n";
+        int carros = 0;
 
         boolean doble=true;
 
@@ -225,12 +231,16 @@ public class Main {
             mensaje+="Con codigo de identificación: "+ codigos[indices[i]] +"\n";
             mensaje+="Fabricado en el año: "+year[indices[i]]+"\n";
             mensaje+="con un precio de: "+precios[indices[i]]+"\n";
+            carros++;
         }
 
-        if(doble==false){
+        if(!doble){
             mensaje += "\n(2/2)\n";
         }
-        JOptionPane.showMessageDialog(null,mensaje);
+        if(carros!=0){
+            JOptionPane.showMessageDialog(null,mensaje);
+        }
+
     }
 
     public static void mostrarListarInventario(String[][] inventario,String[] codigos, String[] modelos, int[] year, int[] precios){
